@@ -1,0 +1,198 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* ═══════════════════════════════════════════════════════════
+   TIPOGRAFÍAS PREMIUM — Nada genérico
+   Space Grotesk: Geométrica técnica con personalidad (títulos)
+   General Sans (Satoshi fallback): Humanista moderna (cuerpo)
+   ═══════════════════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+:root {
+  /* Colores */
+  --brand: 199 89% 48%;
+  --brand-light: 199 92% 61%;
+  --fresh: 160 84% 39%;
+  --surface: 210 40% 98%;
+  --ink: 222 47% 11%;
+  --ink-muted: 215 16% 47%;
+  
+  /* Espaciado horizontal full-bleed */
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --max-w: 1440px;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: hsl(var(--ink));
+  background-color: hsl(var(--surface));
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-body-alt {
+  font-family: 'Sora', sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLLBAR MINIMALISTA
+   ═══════════════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+::selection {
+  background-color: hsl(199 89% 48% / 0.15);
+  color: hsl(199 89% 30%);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LAYOUT — Full Width con sangría lateral
+   ═══════════════════════════════════════════════════════════ */
+.full-bleed {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.edge-pad {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LIQUID GLASS SYSTEM — Sin bordes oscuros
+   ═══════════════════════════════════════════════════════════ */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.02),
+    0 8px 32px rgba(2,132,199,0.05);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.01),
+    0 10px 30px -5px rgba(15,23,42,0.04);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s ease;
+  will-change: transform;
+}
+
+.glass-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.02),
+    0 24px 48px -12px rgba(2,132,199,0.12);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   3D PERSPECTIVE SYSTEM — Para efectos de scroll reales
+   ═══════════════════════════════════════════════════════════ */
+.perspective-container {
+  perspective: 1200px;
+  perspective-origin: center;
+}
+
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.tilt-card:hover {
+  transform: rotateY(-4deg) rotateX(3deg) translateZ(20px);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REVEAL & CLIP ANIMATIONS — GSAP-driven
+   ═══════════════════════════════════════════════════════════ */
+.reveal-up {
+  clip-path: inset(100% 0 0 0);
+}
+
+.reveal-left {
+  clip-path: inset(0 100% 0 0);
+}
+
+.img-parallax {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   IMAGE TREATMENTS
+   ═══════════════════════════════════════════════════════════ */
+.img-cover {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.06);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MAGNETIC BUTTON EFFECT
+   ═══════════════════════════════════════════════════════════ */
+.btn-magnetic {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-magnetic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn-magnetic:hover::before {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MARQUEE / INFINITE SCROLL
+   ═══════════════════════════════════════════════════════════ */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}

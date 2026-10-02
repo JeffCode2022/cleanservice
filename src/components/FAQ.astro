@@ -1,0 +1,115 @@
+---
+---
+<section class="faq-section full-bleed edge-pad bg-slate-50 py-24 overflow-hidden" id="faq">
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
+    <div class="w-full lg:w-[40%] flex flex-col gap-8 relative z-10">
+      <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900">
+        Preguntas Frecuentes
+      </h2>
+      <p class="text-slate-600 font-body">
+        Resolvemos tus dudas sobre nuestro servicio de limpieza profesional.
+      </p>
+      <div class="rounded-2xl overflow-hidden h-[400px] relative shadow-xl">
+        <img src="/images/team-working.jpg" alt="Equipo trabajando" class="faq-parallax-img absolute top-[-10%] left-0 w-full h-[120%] object-cover" />
+      </div>
+    </div>
+    
+    <div class="w-full lg:w-[60%] flex flex-col gap-4 faq-accordion relative z-10 perspective-1000">
+      {
+        [
+          { q: "¿Cuánto tiempo tarda en secar mi mueble?", a: "Dependiendo del tipo de tela y la ventilación del ambiente, el tiempo de secado varía entre 2 a 4 horas gracias a nuestro sistema de inyección y extracción de baja humedad." },
+          { q: "¿Sus productos son seguros para mascotas?", a: "Sí, utilizamos únicamente productos biodegradables y ecológicos que son 100% seguros para tus mascotas y tu familia." },
+          { q: "¿Cómo es el proceso de limpieza de rollers?", a: "Aspiramos, aplicamos un limpiador especializado, cepillamos suavemente para no dañar el material y extraemos la suciedad. Todo esto en tu domicilio sin desmontar nada." },
+          { q: "¿Ofrecen garantía por su servicio?", a: "Por supuesto. Si no quedas satisfecho con el resultado en alguna zona, regresamos a repasarla sin costo adicional dentro de las primeras 48 horas." },
+          { q: "¿El precio incluye los costos de transporte?", a: "Sí, todos nuestros precios son finales e incluyen el traslado de nuestro equipo y maquinarias a tu domicilio dentro de nuestra zona de cobertura." },
+          { q: "¿Qué métodos de pago aceptan?", a: "Aceptamos efectivo, transferencias bancarias, Yape, Plin y todas las tarjetas de crédito o débito sin recargo adicional." }
+        ].map((item, index) => (
+          <div class="faq-item glass-card bg-white/80 backdrop-blur-md p-6 rounded-xl cursor-pointer group hover:shadow-lg transition-shadow duration-300">
+            <div class="flex justify-between items-center gap-4">
+              <h3 class="font-bold text-slate-900 font-display text-lg group-hover:text-sky-600 transition-colors">
+                {item.q}
+              </h3>
+              <div class="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center shrink-0 toggle-icon transition-transform duration-300">
+                <svg class="w-5 h-5 text-sky-600 icon-plus" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-content overflow-hidden h-0 opacity-0 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]">
+              <p class="pt-4 text-slate-600 font-body">
+                {item.a}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Parallax image
+  gsap.to(".faq-parallax-img", {
+    yPercent: 20,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".faq-section",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true
+    }
+  });
+
+  // Stagger FAQ items
+  gsap.from(".faq-item", {
+    scrollTrigger: {
+      trigger: ".faq-accordion",
+      start: "top 80%",
+    },
+    x: 100,
+    rotateY: -5,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.1,
+    ease: "power3.out"
+  });
+
+  // Accordion logic
+  const items = document.querySelectorAll('.faq-item');
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const content = item.querySelector('.faq-content') as HTMLElement;
+      const icon = item.querySelector('.toggle-icon');
+      const isExpanded = item.classList.contains('active');
+      
+      // Close all
+      items.forEach(otherItem => {
+        otherItem.classList.remove('active');
+        const otherContent = otherItem.querySelector('.faq-content') as HTMLElement;
+        const otherIcon = otherItem.querySelector('.toggle-icon');
+        otherContent.style.height = '0px';
+        otherContent.style.opacity = '0';
+        otherIcon?.classList.remove('rotate-45');
+      });
+
+      // Toggle current
+      if (!isExpanded) {
+        item.classList.add('active');
+        content.style.height = content.scrollHeight + 'px';
+        content.style.opacity = '1';
+        icon?.classList.add('rotate-45');
+      }
+    });
+  });
+</script>
+
+<style>
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+</style>

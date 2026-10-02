@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import HeroCleaning3D from '../components/HeroCleaning3D.astro';
+import StatsBar from '../components/StatsBar.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import BeforeAfterSlider from '../components/BeforeAfterSlider.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import PriceCalculator from '../components/PriceCalculator.astro';
+import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
+import FAQ from '../components/FAQ.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+---
+
+<Layout 
+  title="CleanMaster | Limpieza y Desinfección Profesional de Muebles, Cortinas y Tapicería"
+  description="Expertos en limpieza profunda de sofás, cortinas roller, sillas y colchones a domicilio. Inyección-succión alemana, vapor 140°C y secado express en 2 horas."
+>
+  <!-- Barra de Navegación Flotante en Cristal Líquido -->
+  <Navbar />
+
+  <main>
+    <!-- Hero 3D Interactivo: Simulación de limpieza textil y efecto GSAP Scroll -->
+    <HeroCleaning3D />
+
+    <!-- Barra de Métricas y Contadores Animados -->
+    <StatsBar />
+
+    <!-- Catálogo de Servicios con Cards Glassmorphism sin bordes oscuros -->
+    <ServicesGrid />
+
+    <!-- Evidencias Fotográficas: Slider Interactivo Antes vs Después -->
+    <BeforeAfterSlider />
+
+    <!-- El Método Impecable: 4 Fases con Animación ScrollTrigger -->
+    <ProcessSteps />
+
+    <!-- Calculador de Costos Interactivo en Tiempo Real -->
+    <PriceCalculator />
+
+    <!-- Testimonios de Clientes y Empresas con 5 Estrellas -->
+    <TestimonialsCarousel />
+
+    <!-- Preguntas Frecuentes (FAQ) en Acordeón -->
+    <FAQ />
+
+    <!-- Contacto Directo y Solicitud de Cita Técnica -->
+    <ContactSection />
+  </main>
+
+  <!-- Pie de Página -->
+  <Footer />
+
+  <!-- Botón Flotante Permanente de WhatsApp -->
+  <FloatingWhatsApp />
+</Layout>

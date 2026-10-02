@@ -1,0 +1,92 @@
+---
+---
+<section id="antes-despues" class="full-bleed edge-pad py-24 bg-white relative overflow-hidden">
+  <div class="max-w-6xl mx-auto text-center mb-12">
+    <h2 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mb-4">Resultados que Hablan por Sí Solos</h2>
+    <p class="font-body text-lg text-slate-600 max-w-2xl mx-auto">Desliza para ver la diferencia de nuestro servicio de limpieza profunda.</p>
+  </div>
+
+  <div class="max-w-6xl mx-auto relative rounded-2xl overflow-hidden aspect-video select-none slider-container shadow-2xl">
+    <!-- Bottom layer: "Antes" -->
+    <div class="absolute inset-0 w-full h-full bg-slate-200">
+      <img src="/images/before-after.jpg" alt="Antes de la limpieza" class="absolute inset-0 w-full h-full object-cover filter brightness-90 contrast-75" />
+      <span class="absolute top-4 left-4 bg-white/80 backdrop-blur text-slate-900 px-4 py-1 rounded-full font-bold font-body-alt text-sm shadow-lg pointer-events-none z-10">ANTES</span>
+    </div>
+
+    <!-- Top layer: "Después" -->
+    <div class="absolute inset-0 w-full h-full clip-layer z-10 pointer-events-none" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
+      <img src="/images/before-after.jpg" alt="Después de la limpieza" class="absolute inset-0 w-full h-full object-cover filter brightness-110 saturate-125" />
+      <span class="absolute top-4 right-4 bg-emerald-500/90 backdrop-blur text-white px-4 py-1 rounded-full font-bold font-body-alt text-sm shadow-lg pointer-events-none z-20">DESPUÉS</span>
+    </div>
+
+    <!-- Divider -->
+    <div class="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-30 divider-line left-[50%] -ml-[2px] shadow-[0_0_10px_rgba(0,0,0,0.5)]">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-slate-900 divider-handle pointer-events-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l-4 4 4 4m8-8l4 4-4 4" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const container = document.querySelector('.slider-container');
+  const clipLayer = document.querySelector('.clip-layer') as HTMLElement;
+  const divider = document.querySelector('.divider-line') as HTMLElement;
+
+  if (container && clipLayer && divider) {
+    // Initial animation to show user it's draggable
+    gsap.fromTo(divider, { left: '80%' }, {
+      left: '40%',
+      duration: 1.5,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: container,
+        start: "top 75%",
+      },
+      onUpdate: function() {
+        const leftVal = divider.style.left;
+        clipLayer.style.clipPath = `polygon(${leftVal} 0, 100% 0, 100% 100%, ${leftVal} 100%)`;
+      }
+    });
+
+    let isDragging = false;
+
+    const onPointerDown = () => { isDragging = true; };
+    const onPointerUp = () => { isDragging = false; };
+    const onPointerMove = (e: MouseEvent | TouchEvent) => {
+      if (!isDragging) return;
+      let clientX = 0;
+      if (e instanceof MouseEvent) {
+        clientX = e.clientX;
+      } else if (window.TouchEvent && e instanceof TouchEvent) {
+        clientX = e.touches[0].clientX;
+      }
+      
+      const rect = container.getBoundingClientRect();
+      let x = clientX - rect.left;
+      
+      if (x < 0) x = 0;
+      if (x > rect.width) x = rect.width;
+      
+      const percentage = (x / rect.width) * 100;
+      divider.style.left = `${percentage}%`;
+      clipLayer.style.clipPath = `polygon(${percentage}% 0, 100% 0, 100% 100%, ${percentage}% 100%)`;
+    };
+
+    divider.addEventListener('mousedown', onPointerDown);
+    divider.addEventListener('touchstart', onPointerDown, { passive: true });
+    
+    window.addEventListener('mouseup', onPointerUp);
+    window.addEventListener('touchend', onPointerUp);
+    
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('touchmove', onPointerMove, { passive: true });
+  }
+</script>

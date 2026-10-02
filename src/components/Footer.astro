@@ -1,0 +1,60 @@
+---
+---
+<footer class="full-bleed edge-pad bg-white pt-16 pb-8 border-t border-slate-100">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+      
+      <div class="flex flex-col gap-4">
+        <h3 class="font-display font-bold text-2xl text-sky-600 tracking-tight">CleanMaster</h3>
+        <p class="text-slate-600 font-body text-sm leading-relaxed">
+          Servicio profesional de limpieza profunda de muebles y tapicerías. Recuperamos el color y la frescura de tu hogar con la mejor tecnología.
+        </p>
+      </div>
+      
+      <div class="flex flex-col gap-4">
+        <h4 class="font-display font-bold text-lg text-slate-900">Servicios</h4>
+        <ul class="flex flex-col gap-3 text-slate-600 font-body text-sm">
+          <li><a href="#" class="hover:text-sky-600 transition-colors">Limpieza de Sofás</a></li>
+          <li><a href="#" class="hover:text-sky-600 transition-colors">Desinfección de Colchones</a></li>
+          <li><a href="#" class="hover:text-sky-600 transition-colors">Lavado de Sillas</a></li>
+          <li><a href="#" class="hover:text-sky-600 transition-colors">Mantenimiento de Rollers</a></li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h4 class="font-display font-bold text-lg text-slate-900">Cobertura</h4>
+        <ul class="flex flex-col gap-3 text-slate-600 font-body text-sm">
+          <li>Lima Moderna</li>
+          <li>Lima Centro</li>
+          <li>Lima Norte</li>
+          <li>Lima Sur</li>
+          <li>Callao</li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h4 class="font-display font-bold text-lg text-slate-900">Nuestra Garantía</h4>
+        <ul class="flex flex-col gap-3 text-slate-600 font-body text-sm">
+          {
+            ["Personal calificado", "Insumos ecológicos", "Secado rápido", "Atención a domicilio"].map((item) => (
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+    
+    <div class="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500 font-body">
+      <p>&copy; {new Date().getFullYear()} CleanMaster. Todos los derechos reservados.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-sky-600 transition-colors">Términos y Condiciones</a>
+        <a href="#" class="hover:text-sky-600 transition-colors">Política de Privacidad</a>
+      </div>
+    </div>
+  </div>
+</footer>
