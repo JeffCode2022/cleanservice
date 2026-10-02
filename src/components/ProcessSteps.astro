@@ -1,68 +1,171 @@
 ---
+const steps = [
+  {
+    num: "01",
+    tag: "Fase 1: Preparación",
+    title: "Diagnóstico de Fibra & Aspirado Percutor",
+    desc: "Antes de aplicar cualquier líquido, evaluamos el tipo de tejido (lino, terciopelo, microfibra o cuero). Realizamos un aspirado industrial por percusión que desaloja y aspira polvo, cabellos y ácaros incrustados hasta 10 cm bajo el tapiz, evitando que se forme barro interno.",
+    img: "/images/team-working.jpg",
+    specs: [
+      { label: "Vibración", val: "3,200 rpm" },
+      { label: "Poder de Succión", val: "230 mbar" },
+      { label: "Filtración", val: "HEPA H14" }
+    ]
+  },
+  {
+    num: "02",
+    tag: "Fase 2: Química Segura",
+    title: "Desmanchado Enzimático Bio-Ecológico",
+    desc: "Aplicamos microespuma activa biodegradable con pH neutro. Los agentes enzimáticos vegetales descomponen grasas corporales, derrames de café, vino y orina de mascotas a nivel molecular, restaurando el color original de la tela sin decolorar ni quemar las fibras.",
+    img: "/images/hero-cleaning.jpg",
+    specs: [
+      { label: "Nivel de pH", val: "7.2 Neutro" },
+      { label: "Composición", val: "100% Bio-Vegetal" },
+      { label: "Seguridad", val: "Inocuo Mascotas" }
+    ]
+  },
+  {
+    num: "03",
+    tag: "Fase 3: Desinfección",
+    title: "Inyección-Extracción Térmica a 140°C",
+    desc: "Nuestros equipos industriales alemanes inyectan agua purificada caliente e instantáneamente succionan toda el agua turbia a presión continua. El choque térmico a 140°C destruye el 99.9% de bacterias, hongos y ácaros vivos garantizando una desinfección de grado clínico.",
+    img: "/images/service-sofa.jpg",
+    specs: [
+      { label: "Presión Inyección", val: "4.5 Bar" },
+      { label: "Temperatura Vapor", val: "140°C" },
+      { label: "Eficacia", val: "99.9% Germicida" }
+    ]
+  },
+  {
+    num: "04",
+    tag: "Fase 4: Confort Express",
+    title: "Turbosecado Acelerado & Aromatización",
+    desc: "Instalamos turbinas centrífugas de aire seco de alta velocidad que aceleran la evaporación del 5% de humedad residual restante. Tu sofá o colchón queda 100% seco y listo para usar en solo 2 a 3 horas, con un suave aroma a lino limpio y sin olor a humedad.",
+    img: "/images/process-step4.jpg",
+    specs: [
+      { label: "Tiempo Secado", val: "2 a 3 Horas" },
+      { label: "Flujo de Aire", val: "3,500 m³/h" },
+      { label: "Garantía", val: "100% de Repaso" }
+    ]
+  }
+];
 ---
-<section id="proceso" class="process-section full-bleed bg-slate-900 text-white overflow-hidden relative">
-  <div class="h-screen w-full flex flex-nowrap process-container relative">
+
+<section id="proceso" class="full-bleed edge-pad py-24 bg-slate-900 text-white relative overflow-hidden">
+  
+  <!-- Glow ambiental de fondo -->
+  <div class="absolute top-0 right-1/4 w-[600px] h-[600px] bg-sky-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+  <div class="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
     
-    <!-- Step 1 -->
-    <div class="process-panel w-screen h-screen flex-shrink-0 flex items-center justify-center p-8 relative perspective-[1000px]">
-      <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center panel-content" style="transform-origin: left center;">
-        <div>
-          <span class="font-display text-8xl md:text-9xl opacity-20 block mb-4">01</span>
-          <h3 class="font-display text-4xl md:text-5xl font-bold mb-4 text-emerald-400">Reserva y Evaluación</h3>
-          <p class="font-body text-lg text-slate-300">Contáctanos vía WhatsApp para agendar tu servicio. Realizamos una evaluación preliminar para entender tus necesidades específicas y preparar el equipo adecuado.</p>
-        </div>
-        <div class="rounded-2xl overflow-hidden glass-card p-2 bg-white/5 border border-white/10 shadow-2xl">
-          <div class="aspect-square bg-slate-800 rounded-xl flex items-center justify-center">
-             <svg class="w-32 h-32 text-sky-500 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-          </div>
-        </div>
+    <!-- Encabezado de Sección -->
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-semibold text-sky-400 mb-4 shadow-xs">
+        <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+        <span>Tecnología Alemana de Precisión</span>
       </div>
+
+      <h2 class="font-display text-4xl sm:text-5xl font-bold tracking-tight mb-5">
+        El Método <span class="text-sky-400">CleanMaster</span> en 4 Fases
+      </h2>
+
+      <p class="text-slate-400 text-base sm:text-lg leading-relaxed">
+        Un protocolo científico e industrial diseñado para restaurar la suavidad, color y textura de tus muebles sin dejar humedad residual ni malos olores.
+      </p>
     </div>
 
-    <!-- Step 2 -->
-    <div class="process-panel w-screen h-screen flex-shrink-0 flex items-center justify-center p-8 relative perspective-[1000px]">
-      <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center panel-content" style="transform-origin: left center;">
-        <div>
-          <span class="font-display text-8xl md:text-9xl opacity-20 block mb-4">02</span>
-          <h3 class="font-display text-4xl md:text-5xl font-bold mb-4 text-emerald-400">Inspección In Situ</h3>
-          <p class="font-body text-lg text-slate-300">Nuestro equipo experto llega a tu domicilio y verifica el estado de tus muebles o alfombras, identificando manchas difíciles y el tipo de tela.</p>
-        </div>
-        <div class="rounded-2xl overflow-hidden glass-card p-2 bg-white/5 border border-white/10 shadow-2xl">
-          <img src="/images/team-working.jpg" alt="Equipo trabajando" class="w-full aspect-square object-cover rounded-xl" />
-        </div>
-      </div>
+    <!-- Lista de Fases con Fotos Reales y Especificaciones Técnicas -->
+    <div class="space-y-16 lg:space-y-24">
+      {steps.map((step, idx) => {
+        const isEven = idx % 2 === 1;
+        return (
+          <div class={`process-card-item flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-10 lg:gap-16`}>
+            
+            <!-- Imagen Real de la Fase -->
+            <div class="w-full lg:w-1/2 relative group">
+              <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/15 aspect-[16/10] bg-slate-800">
+                <img 
+                  src={step.img} 
+                  alt={step.title} 
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                
+                <!-- Badge de Número de Fase Flotante -->
+                <div class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white px-3.5 py-1.5 rounded-2xl border border-white/20 flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+                  <span class="font-display font-extrabold text-xs tracking-wider">{step.tag}</span>
+                </div>
+              </div>
+
+              <!-- Glow decorativo sutil detrás de la foto -->
+              <div class="absolute -inset-1 bg-gradient-to-r from-sky-500/20 to-emerald-500/20 rounded-3xl blur-xl -z-10 opacity-70 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+
+            <!-- Texto Explicativo y Métricas Técnicas -->
+            <div class="w-full lg:w-1/2 space-y-6">
+              <div class="flex items-baseline gap-4">
+                <span class="font-display font-black text-6xl sm:text-7xl text-sky-400/30">
+                  {step.num}
+                </span>
+                <span class="text-xs uppercase font-bold text-sky-400 tracking-widest bg-sky-400/10 px-3 py-1 rounded-full border border-sky-400/20">
+                  Paso Verificado
+                </span>
+              </div>
+
+              <h3 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-snug">
+                {step.title}
+              </h3>
+
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                {step.desc}
+              </p>
+
+              <!-- Grid de Métricas Técnicas -->
+              <div class="grid grid-cols-3 gap-3 pt-3 border-t border-slate-800">
+                {step.specs.map(spec => (
+                  <div class="bg-white/5 border border-white/10 rounded-2xl p-3 text-center">
+                    <span class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                      {spec.label}
+                    </span>
+                    <strong class="font-display font-bold text-xs sm:text-sm text-sky-300">
+                      {spec.val}
+                    </strong>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+          </div>
+        );
+      })}
     </div>
 
-    <!-- Step 3 -->
-    <div class="process-panel w-screen h-screen flex-shrink-0 flex items-center justify-center p-8 relative perspective-[1000px]">
-      <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center panel-content" style="transform-origin: left center;">
-        <div>
-          <span class="font-display text-8xl md:text-9xl opacity-20 block mb-4">03</span>
-          <h3 class="font-display text-4xl md:text-5xl font-bold mb-4 text-emerald-400">Limpieza Profunda</h3>
-          <p class="font-body text-lg text-slate-300">Aplicamos productos especializados y utilizamos maquinaria de inyección-extracción para remover polvo, ácaros y suciedad incrustada desde la raíz.</p>
+    <!-- Sello de Garantía y CTA -->
+    <div class="mt-24 p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-sky-900/40 to-slate-800/60 border border-white/15 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+      <div class="flex items-center gap-5">
+        <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-400/30 text-emerald-400 flex items-center justify-center text-3xl shrink-0">
+          🛡️
         </div>
-        <div class="rounded-2xl overflow-hidden glass-card p-2 bg-white/5 border border-white/10 shadow-2xl">
-          <div class="aspect-square bg-slate-800 rounded-xl flex items-center justify-center">
-             <svg class="w-32 h-32 text-sky-500 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-          </div>
+        <div>
+          <h4 class="font-display text-xl sm:text-2xl font-bold text-white mb-1">
+            Garantía Total de Satisfacción
+          </h4>
+          <p class="text-slate-300 text-xs sm:text-sm max-w-xl">
+            Si al terminar notas cualquier zona con manchas o humedad que no haya sido retirada al 100%, regresamos a tu domicilio a repasar el mueble sin ningún costo adicional.
+          </p>
         </div>
       </div>
-    </div>
 
-    <!-- Step 4 -->
-    <div class="process-panel w-screen h-screen flex-shrink-0 flex items-center justify-center p-8 relative perspective-[1000px]">
-      <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center panel-content" style="transform-origin: left center;">
-        <div>
-          <span class="font-display text-8xl md:text-9xl opacity-20 block mb-4">04</span>
-          <h3 class="font-display text-4xl md:text-5xl font-bold mb-4 text-emerald-400">Secado y Acabado</h3>
-          <p class="font-body text-lg text-slate-300">Aspiramos el exceso de humedad dejando tus muebles casi secos y con un aroma fresco. Realizamos una revisión final contigo para asegurar tu total satisfacción.</p>
-        </div>
-        <div class="rounded-2xl overflow-hidden glass-card p-2 bg-white/5 border border-white/10 shadow-2xl">
-          <div class="aspect-square bg-slate-800 rounded-xl flex items-center justify-center">
-             <svg class="w-32 h-32 text-emerald-500 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path></svg>
-          </div>
-        </div>
-      </div>
+      <a 
+        href="https://wa.me/51999999999?text=Hola%20CleanMaster,%20quiero%20agendar%20un%20servicio%20con%20el%20m%C3%A9todo%20profesional"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-display font-bold px-8 py-4 rounded-full shadow-lg shadow-sky-500/25 transition-all hover:scale-105 active:scale-95 shrink-0 text-sm sm:text-base"
+      >
+        Agendar con Este Método →
+      </a>
     </div>
 
   </div>
@@ -71,66 +174,21 @@
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-
   gsap.registerPlugin(ScrollTrigger);
 
-  const container = document.querySelector('.process-container') as HTMLElement;
-  const panels = gsap.utils.toArray('.process-panel');
+  const items = document.querySelectorAll('.process-card-item');
 
-  if (container && panels.length > 0) {
-    const totalScrollWidth = container.scrollWidth - window.innerWidth;
-    
-    // Main horizontal scroll animation
-    const scrollTween = gsap.to(panels, {
-      xPercent: -100 * (panels.length - 1),
-      ease: "none",
+  items.forEach((item) => {
+    gsap.from(item, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power3.out",
       scrollTrigger: {
-        trigger: ".process-section",
-        pin: true,
-        scrub: 1,
-        snap: 1 / (panels.length - 1),
-        end: () => "+=" + container.offsetWidth
+        trigger: item,
+        start: "top 80%",
+        once: true
       }
     });
-
-    // 3D effect on individual panels as they enter
-    panels.forEach((panel: any) => {
-      const content = panel.querySelector('.panel-content');
-      if(content) {
-        gsap.fromTo(content, 
-          { 
-            rotateY: 45, 
-            opacity: 0,
-            scale: 0.8
-          },
-          {
-            rotateY: 0,
-            opacity: 1,
-            scale: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: panel,
-              containerAnimation: scrollTween,
-              start: "left center",
-              end: "center center",
-              scrub: 1
-            }
-          }
-        );
-        gsap.to(content, {
-            rotateY: -45,
-            opacity: 0,
-            scale: 0.8,
-            ease: "power2.in",
-            scrollTrigger: {
-              trigger: panel,
-              containerAnimation: scrollTween,
-              start: "center center",
-              end: "right center",
-              scrub: 1
-            }
-        });
-      }
-    });
-  }
+  });
 </script>

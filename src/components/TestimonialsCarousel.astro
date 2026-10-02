@@ -216,14 +216,112 @@
     </div>
   </div>
 
-  <!-- Corporate clients -->
-  <div class="max-w-4xl mx-auto mt-16 px-4">
-    <p class="text-center font-body text-sm text-slate-400 mb-6 uppercase tracking-widest">Empresas que confían en nosotros</p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <div class="glass-pill px-6 py-2 rounded-full border border-slate-100 text-slate-600 font-display hover:text-sky-600 hover:border-sky-100 transition-colors shadow-sm bg-white/50 backdrop-blur-sm">Hotel Casa Andina</div>
-      <div class="glass-pill px-6 py-2 rounded-full border border-slate-100 text-slate-600 font-display hover:text-sky-600 hover:border-sky-100 transition-colors shadow-sm bg-white/50 backdrop-blur-sm">Cineplanet</div>
-      <div class="glass-pill px-6 py-2 rounded-full border border-slate-100 text-slate-600 font-display hover:text-sky-600 hover:border-sky-100 transition-colors shadow-sm bg-white/50 backdrop-blur-sm">WeWork Lima</div>
-      <div class="glass-pill px-6 py-2 rounded-full border border-slate-100 text-slate-600 font-display hover:text-sky-600 hover:border-sky-100 transition-colors shadow-sm bg-white/50 backdrop-blur-sm">Clínica Delgado</div>
+  <!-- Corporate clients Carousel in Grayscale -->
+  <div class="w-full mt-20 pt-10 border-t border-slate-100 overflow-hidden">
+    <p class="text-center font-display text-xs font-bold text-slate-400 mb-8 uppercase tracking-widest">
+      Empresas e Instituciones que Confían en CleanMaster
+    </p>
+
+    <div class="relative w-full overflow-hidden flex items-center">
+      <!-- Gradient fades on edges -->
+      <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+
+      <!-- Marquee track -->
+      <div class="flex items-center gap-12 sm:gap-16 corporate-track whitespace-nowrap">
+        
+        <!-- Marriott -->
+        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+          <svg class="h-7 w-auto fill-slate-800" viewBox="0 0 200 40">
+            <path d="M25 5 L35 30 L45 10 L55 30 L65 5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="80" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="currentColor">MARRIOTT</text>
+          </svg>
+        </div>
+
+        <!-- WeWork -->
+        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 160 40">
+            <text x="10" y="28" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="24" letter-spacing="-1" fill="currentColor">wework</text>
+          </svg>
+        </div>
+
+        <!-- Casa Andina -->
+        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 220 40">
+            <circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
+            <circle cx="20" cy="20" r="5" fill="currentColor"/>
+            <text x="42" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="16" letter-spacing="1" fill="currentColor">CASA ANDINA</text>
+          </svg>
+        </div>
+
+        <!-- Cineplanet -->
+        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 200 40">
+            <ellipse cx="20" cy="20" rx="14" ry="7" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(-25 20 20)"/>
+            <circle cx="20" cy="20" r="5" fill="currentColor"/>
+            <text x="44" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="17" fill="currentColor">cineplanet</text>
+          </svg>
+        </div>
+
+        <!-- Clínica Delgado -->
+        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 220 40">
+            <rect x="10" y="10" width="20" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M20 14 V26 M14 20 H26" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <text x="38" y="22" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="14" fill="currentColor">CLÍNICA DELGADO</text>
+            <text x="38" y="32" font-family="'Space Grotesk', sans-serif" font-weight="500" font-size="9" fill="currentColor" opacity="0.7">AUNA HEALTHCARE</text>
+          </svg>
+        </div>
+
+        <!-- Hilton -->
+        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 160 40">
+            <rect x="10" y="8" width="22" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+            <text x="16" y="26" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="18" fill="currentColor">H</text>
+            <text x="40" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="18" letter-spacing="2" fill="currentColor">HILTON</text>
+          </svg>
+        </div>
+
+        <!-- Starbucks -->
+        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
+          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 190 40">
+            <circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <polygon points="20,12 22,17 27,17 23,20 25,25 20,22 15,25 17,20 13,17 18,17" fill="currentColor"/>
+            <text x="40" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="16" letter-spacing="1" fill="currentColor">STARBUCKS</text>
+          </svg>
+        </div>
+
+        <!-- Duplicate set for infinite loop -->
+        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer" aria-hidden="true">
+          <svg class="h-7 w-auto fill-slate-800" viewBox="0 0 200 40">
+            <path d="M25 5 L35 30 L45 10 L55 30 L65 5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="80" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="currentColor">MARRIOTT</text>
+          </svg>
+        </div>
+
+        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer" aria-hidden="true">
+          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 160 40">
+            <text x="10" y="28" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="24" letter-spacing="-1" fill="currentColor">wework</text>
+          </svg>
+        </div>
+
+        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer" aria-hidden="true">
+          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 220 40">
+            <circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
+            <circle cx="20" cy="20" r="5" fill="currentColor"/>
+            <text x="42" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="16" letter-spacing="1" fill="currentColor">CASA ANDINA</text>
+          </svg>
+        </div>
+
+        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer" aria-hidden="true">
+          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 200 40">
+            <ellipse cx="20" cy="20" rx="14" ry="7" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(-25 20 20)"/>
+            <circle cx="20" cy="20" r="5" fill="currentColor"/>
+            <text x="44" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="17" fill="currentColor">cineplanet</text>
+          </svg>
+        </div>
+
+      </div>
     </div>
   </div>
 
@@ -244,8 +342,27 @@
       transform: translateX(0);
     }
     100% {
-      /* Adjust based on number of items and gap */
       transform: translateX(calc(-50% - 12px));
+    }
+  }
+
+  /* Corporate Logos Marquee */
+  .corporate-track {
+    display: flex;
+    width: max-content;
+    animation: corporateScroll 28s linear infinite;
+  }
+
+  .corporate-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes corporateScroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
     }
   }
 </style>
