@@ -43,48 +43,58 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const cards = document.querySelectorAll(".stat-card");
-  
-  if (cards.length > 0) {
-    // 3D Flip Reveal
-    gsap.fromTo(cards, 
-      { rotationX: 90, opacity: 0, transformOrigin: "50% 50% -100px" },
-      {
-        rotationX: 0,
-        opacity: 1,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "expo.out",
-        scrollTrigger: {
-          trigger: ".stats-section",
-          start: "top 80%",
-        }
-      }
-    );
-
-    // Counter Animation
-    const stats = document.querySelectorAll(".stat-number");
-    stats.forEach(stat => {
-      const target = parseFloat(stat.getAttribute("data-target") || "0");
-      const isDecimal = target % 1 !== 0;
-      const counter = { val: 0 };
-      
-      gsap.to(counter, {
-        val: target,
-        duration: 2.5,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".stats-section",
-          start: "top 80%",
-        },
-        onUpdate: function() {
-          if (isDecimal) {
-            stat.innerHTML = counter.val.toFixed(1);
-          } else {
-            stat.innerHTML = Math.round(counter.val).toLocaleString('en-US');
+  const initStatsBar = () => {
+    const cards = document.querySelectorAll(".stat-card");
+    
+    if (cards.length > 0) {
+      // 3D Flip Reveal
+      gsap.fromTo(cards, 
+        { rotationX: 90, opacity: 0, transformOrigin: "50% 50% -100px" },
+        {
+          rotationX: 0,
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: ".stats-section",
+            start: "top 85%",
+            once: true
           }
         }
+      );
+
+      // Counter Animation
+      const stats = document.querySelectorAll(".stat-number");
+      stats.forEach(stat => {
+        const target = parseFloat(stat.getAttribute("data-target") || "0");
+        const isDecimal = target % 1 !== 0;
+        const counter = { val: 0 };
+        
+        gsap.to(counter, {
+          val: target,
+          duration: 2.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".stats-section",
+            start: "top 85%",
+            once: true
+          },
+          onUpdate: function() {
+            if (isDecimal) {
+              stat.innerHTML = counter.val.toFixed(1);
+            } else {
+              stat.innerHTML = Math.round(counter.val).toLocaleString('en-US');
+            }
+          }
+        });
       });
-    });
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStatsBar);
+  } else {
+    initStatsBar();
   }
 </script>

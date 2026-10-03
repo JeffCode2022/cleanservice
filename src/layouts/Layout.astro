@@ -13,12 +13,16 @@ const {
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -28,7 +32,52 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
   </head>
-  <body class="min-h-screen overflow-x-hidden">
+  <body class="min-h-screen overflow-x-clip bg-slate-50 text-slate-900">
     <slot />
+
+    <script>
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+      import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+      // Desactivar scroll-behavior nativo para evitar interferencias con ScrollTrigger
+      document.documentElement.style.scrollBehavior = "auto";
+
+      // Manejo de navegación suave por anclas con GSAP ScrollToPlugin
+      document.addEventListener("click", (e) => {
+        const target = e.target as HTMLElement | null;
+        const anchor = target?.closest("a") as HTMLAnchorElement | null;
+        if (!anchor) return;
+
+        const href = anchor.getAttribute("href");
+        if (href && href.startsWith("#") && href.length > 1) {
+          const targetEl = document.querySelector(href);
+          if (targetEl) {
+            e.preventDefault();
+            const navHeight = document.getElementById("mainHeader")?.offsetHeight || 80;
+            gsap.to(window, {
+              duration: 1,
+              scrollTo: { y: targetEl, offsetY: navHeight + 10 },
+              ease: "power3.inOut"
+            });
+          }
+        }
+      });
+
+      // Recalcular ScrollTriggers cuando todos los recursos (imágenes, fuentes) hayan cargado
+      window.addEventListener("load", () => {
+        ScrollTrigger.sort();
+        ScrollTrigger.refresh();
+      });
+
+      // Recálculo tras carga de fuentes
+      if (document.fonts) {
+        document.fonts.ready.then(() => {
+          ScrollTrigger.refresh();
+        });
+      }
+    </script>
   </body>
 </html>

@@ -1,0 +1,195 @@
+---
+interface Props {
+  src?: string;
+  alt?: string;
+  title?: string;
+  subtitle?: string;
+  scrollHint?: string;
+  startWidth?: number;  // Porcentaje inicial del ancho (ej. 50%)
+  startHeight?: number; // Altura vh inicial (ej. 58vh)
+  startRadius?: number; // Radio de borde inicial (ej. 32px)
+  endRadius?: number;   // Radio de borde final (ej. 0px)
+  mediaZoom?: number;   // Escala inicial de la imagen (ej. 1.35)
+  overlayScrim?: number;// Opacidad del overlay oscuro (ej. 0.8)
+}
+
+const {
+  src = "/images/hero-cleaning.jpg",
+  alt = "Método de Limpieza Profesional",
+  title = "Ingeniería Textil",
+  subtitle = "El Método de Limpieza en 4 Fases",
+  scrollHint = "Desliza para expandir el laboratorio y ver el proceso",
+  startWidth = 50,
+  startHeight = 58,
+  startRadius = 32,
+  endRadius = 0,
+  mediaZoom = 1.35,
+  overlayScrim = 0.85
+} = Astro.props;
+---
+
+<div 
+  class="scroll-expand-wrapper relative w-full" 
+  id="scrollExpandWrapper"
+  data-start-width={startWidth}
+  data-start-height={startHeight}
+  data-start-radius={startRadius}
+  data-end-radius={endRadius}
+  data-media-zoom={mediaZoom}
+  data-overlay-scrim={overlayScrim}
+>
+  <!-- Contenedor Pinned que ocupa toda la pantalla mientras dura el scroll -->
+  <div class="scroll-expand-pin h-screen w-full flex items-center justify-center overflow-hidden bg-slate-950 relative" id="expandPinContainer">
+    
+    <!-- El Frame que se expande de startWidth a 100% y startHeight a 100% -->
+    <div 
+      class="scroll-expand-frame relative overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] flex flex-col items-center justify-center border border-white/20 will-change-transform z-10"
+      id="expandFrame"
+      style={`
+        width: ${startWidth}%;
+        height: ${startHeight}vh;
+        border-radius: ${startRadius}px;
+      `}
+    >
+      
+      <!-- Imagen de fondo que hace zoom out cinemático -->
+      <img 
+        src={src} 
+        alt={alt} 
+        class="scroll-expand-media absolute inset-0 w-full h-full object-cover will-change-transform"
+        id="expandMedia"
+        style={`transform: scale(${mediaZoom});`}
+      />
+
+      <!-- Scrim / Velo oscuro que se intensifica al expandir -->
+      <div 
+        class="scroll-expand-scrim absolute inset-0 bg-slate-950 transition-opacity will-change-opacity pointer-events-none"
+        id="expandScrim"
+        style={`opacity: ${overlayScrim * 0.4};`}
+      ></div>
+
+      <!-- Título Inicial y Hint (Visible cuando está comprimido en el centro) -->
+      <div class="scroll-expand-intro relative z-20 text-center px-6 max-w-xl text-white transition-all duration-300" id="expandIntro">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs font-semibold text-sky-300 mb-4 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+          <span>{title}</span>
+        </span>
+        <h3 class="font-display text-2xl sm:text-4xl font-extrabold tracking-tight mb-2 drop-shadow-lg text-white">
+          {subtitle}
+        </h3>
+        <p class="text-xs sm:text-sm text-slate-300 font-medium flex items-center justify-center gap-2 mt-4 opacity-90">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 animate-bounce text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+          <span>{scrollHint}</span>
+        </p>
+      </div>
+
+      <!-- Contenido Revelado (Aparece una vez expandido a pantalla completa) -->
+      <div class="scroll-expand-content absolute inset-0 z-30 opacity-0 pointer-events-none flex flex-col items-center justify-start sm:justify-center p-4 sm:p-6 lg:p-8 w-full h-full overflow-y-auto" id="expandContent">
+        <div class="w-full max-w-6xl mx-auto pointer-events-auto py-2">
+          <slot />
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- SCRIPT COMO MÓDULO ES (SIN define:vars PARA QUE VITE Y GSAP SE COMPILEN SIN ERRORES) -->
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initScrollExpand = () => {
+    const wrapper = document.getElementById('scrollExpandWrapper');
+    const frame = document.getElementById('expandFrame');
+    const media = document.getElementById('expandMedia');
+    const scrim = document.getElementById('expandScrim');
+    const intro = document.getElementById('expandIntro');
+    const content = document.getElementById('expandContent');
+
+    if (!wrapper || !frame || !media || !scrim || !intro || !content) return;
+
+    const startRadius = parseFloat(wrapper.dataset.startRadius || '32');
+    const endRadius = parseFloat(wrapper.dataset.endRadius || '0');
+    const overlayScrim = parseFloat(wrapper.dataset.overlayScrim || '0.85');
+
+    // Timeline de expansión vinculada al scroll con GSAP ScrollTrigger PIN
+    const expandTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: wrapper,
+        start: 'top top',
+        end: '+=180%', // Distancia de scroll para completar la animación
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    });
+
+    // 1. Expansión fluida del marco de su tamaño inicial a pantalla completa 100%
+    expandTl.to(frame, {
+      width: '100%',
+      height: '100%',
+      borderRadius: `${endRadius}px`,
+      borderWidth: '0px',
+      ease: 'power2.inOut',
+      duration: 1
+    }, 0);
+
+    // 2. Zoom out cinemático de la imagen de fondo
+    expandTl.to(media, {
+      scale: 1,
+      ease: 'power2.inOut',
+      duration: 1
+    }, 0);
+
+    // 3. Incremento del oscurecimiento para legibilidad perfecta del texto
+    expandTl.to(scrim, {
+      opacity: overlayScrim,
+      ease: 'power1.inOut',
+      duration: 0.8
+    }, 0.1);
+
+    // 4. Desvanecimiento suave del título introductorio
+    expandTl.to(intro, {
+      opacity: 0,
+      scale: 0.9,
+      duration: 0.35,
+      ease: 'power1.out'
+    }, 0.1);
+
+    // 5. Revelado del contenido completo con los 4 métodos
+    expandTl.to(content, {
+      opacity: 1,
+      pointerEvents: 'auto',
+      duration: 0.65,
+      ease: 'power2.out'
+    }, 0.45);
+
+    // Notificar a ScrollTrigger para recalcular los triggers posteriores al espaciador del pin
+    ScrollTrigger.refresh();
+  };
+
+  // Inicializar en DOMContentLoaded o inmediatamente si ya está listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollExpand);
+  } else {
+    initScrollExpand();
+  }
+</script>
+
+<style>
+  .scroll-expand-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .scroll-expand-frame {
+    transition: box-shadow 0.3s ease;
+  }
+</style>

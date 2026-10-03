@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import HeroCleaning3D from '../components/HeroCleaning3D.astro';
+import HeroMaster from '../components/hero/HeroMaster';
 import StatsBar from '../components/StatsBar.astro';
 import ServicesGrid from '../components/ServicesGrid.astro';
 import BeforeAfterSlider from '../components/BeforeAfterSlider.astro';
@@ -22,8 +22,8 @@ import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
   <Navbar />
 
   <main>
-    <!-- Hero 3D Interactivo: Simulación de limpieza textil y efecto GSAP Scroll -->
-    <HeroCleaning3D />
+    <!-- Hero Master Canvas 1440x810: Parallax de Profundidad, Keycaps Mecánicos y Estética Glassmorphism -->
+    <HeroMaster client:load />
 
     <!-- Barra de Métricas y Contadores Animados -->
     <StatsBar />

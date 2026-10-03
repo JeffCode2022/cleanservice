@@ -34,8 +34,10 @@ export default {
         }
       },
       fontFamily: {
+        display: ['"Plus Jakarta Sans"', '"Outfit"', 'sans-serif'],
         heading: ['"Plus Jakarta Sans"', 'sans-serif'],
-        sans: ['"Inter"', 'sans-serif'],
+        numbers: ['"Sora"', '"Outfit"', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', '"DM Sans"', 'sans-serif'],
         accent: ['"Outfit"', 'sans-serif'],
       },
       boxShadow: {

@@ -1,1 +1,0 @@
-import{n as e,t}from"./ScrollTrigger.BJZ90ViQ.js";e.registerPlugin(t),document.querySelectorAll(`.process-card-item`).forEach(t=>{e.from(t,{opacity:0,y:50,duration:1,ease:`power3.out`,scrollTrigger:{trigger:t,start:`top 80%`,once:!0}})});

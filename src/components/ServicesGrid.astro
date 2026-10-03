@@ -133,59 +133,67 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // 3D Card Animation
-  const cards = document.querySelectorAll(".bento-item");
-  if (cards.length > 0) {
-    gsap.fromTo(cards, 
-      { 
-        y: 80,
-        rotationX: 10,
-        rotationY: -10,
-        opacity: 0,
-        transformOrigin: "50% 50% -50px"
-      },
-      {
-        y: 0,
-        rotationX: 0,
-        rotationY: 0,
-        opacity: 1,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".services-section",
-          start: "top 75%",
+  const initServicesGrid = () => {
+    // 3D Card Animation
+    const cards = document.querySelectorAll(".bento-item");
+    if (cards.length > 0) {
+      gsap.fromTo(cards, 
+        { 
+          y: 60,
+          rotationX: 10,
+          rotationY: -10,
+          opacity: 0,
+          transformOrigin: "50% 50% -50px"
+        },
+        {
+          y: 0,
+          rotationX: 0,
+          rotationY: 0,
+          opacity: 1,
+          duration: 1.1,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".services-section",
+            start: "top 80%",
+            once: true
+          }
         }
-      }
-    );
+      );
+    }
+
+    // Subtle Parallax for images
+    const parallaxWrappers = document.querySelectorAll(".parallax-wrapper");
+    parallaxWrappers.forEach(wrapper => {
+      gsap.set(wrapper, { scale: 1.15 });
+      gsap.to(wrapper, {
+        yPercent: 12,
+        ease: "none",
+        scrollTrigger: {
+          trigger: wrapper.closest('.bento-item'),
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+    });
+
+    // Spotlight mouse tracking (React Bits effect)
+    document.querySelectorAll('.spotlight-card').forEach((card) => {
+      card.addEventListener('mousemove', (e: Event) => {
+        const mouseEvent = e as MouseEvent;
+        const rect = (card as HTMLElement).getBoundingClientRect();
+        const x = mouseEvent.clientX - rect.left;
+        const y = mouseEvent.clientY - rect.top;
+        (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+        (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initServicesGrid);
+  } else {
+    initServicesGrid();
   }
-
-  // Subtle Parallax for images
-  const parallaxWrappers = document.querySelectorAll(".parallax-wrapper");
-  parallaxWrappers.forEach(wrapper => {
-    // scale up slightly so it has room to parallax without showing edges
-    gsap.set(wrapper, { scale: 1.15 });
-    gsap.to(wrapper, {
-      yPercent: 12,
-      ease: "none",
-      scrollTrigger: {
-        trigger: wrapper.closest('.bento-item'),
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true
-      }
-    });
-  });
-
-  // Spotlight mouse tracking (React Bits effect)
-  document.querySelectorAll('.spotlight-card').forEach((card) => {
-    card.addEventListener('mousemove', (e: Event) => {
-      const mouseEvent = e as MouseEvent;
-      const rect = (card as HTMLElement).getBoundingClientRect();
-      const x = mouseEvent.clientX - rect.left;
-      const y = mouseEvent.clientY - rect.top;
-      (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
-      (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
-    });
-  });
 </script>

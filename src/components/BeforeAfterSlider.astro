@@ -74,65 +74,74 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const container = document.querySelector('.slider-container');
-  const clipLayer = document.querySelector('.clip-layer') as HTMLElement;
-  const divider = document.getElementById('sliderDivider') as HTMLElement;
+  const initBeforeAfter = () => {
+    const container = document.querySelector('.slider-container');
+    const clipLayer = document.querySelector('.clip-layer') as HTMLElement;
+    const divider = document.getElementById('sliderDivider') as HTMLElement;
 
-  if (container && clipLayer && divider) {
-    // Animación de demostración al entrar en pantalla con ScrollTrigger
-    gsap.fromTo(divider, 
-      { left: '75%' }, 
-      {
-        left: '35%',
-        duration: 1.4,
-        ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: container,
-          start: "top 75%",
-          once: true
-        },
-        onUpdate: function() {
-          const leftVal = divider.style.left;
-          clipLayer.style.clipPath = `polygon(${leftVal} 0, 100% 0, 100% 100%, ${leftVal} 100%)`;
+    if (container && clipLayer && divider) {
+      // Animación de demostración al entrar en pantalla con ScrollTrigger
+      const demoTween = gsap.fromTo(divider, 
+        { left: '75%' }, 
+        {
+          left: '35%',
+          duration: 1.4,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            trigger: container,
+            start: "top 75%",
+            once: true
+          },
+          onUpdate: function() {
+            const leftVal = divider.style.left;
+            clipLayer.style.clipPath = `polygon(${leftVal} 0, 100% 0, 100% 100%, ${leftVal} 100%)`;
+          }
         }
-      }
-    );
+      );
 
-    let isDragging = false;
+      let isDragging = false;
 
-    const setPosition = (clientX: number) => {
-      const rect = container.getBoundingClientRect();
-      let x = clientX - rect.left;
-      if (x < 0) x = 0;
-      if (x > rect.width) x = rect.width;
-      const percentage = (x / rect.width) * 100;
-      divider.style.left = `${percentage}%`;
-      clipLayer.style.clipPath = `polygon(${percentage}% 0, 100% 0, 100% 100%, ${percentage}% 100%)`;
-    };
+      const setPosition = (clientX: number) => {
+        demoTween.kill();
+        const rect = container.getBoundingClientRect();
+        let x = clientX - rect.left;
+        if (x < 0) x = 0;
+        if (x > rect.width) x = rect.width;
+        const percentage = (x / rect.width) * 100;
+        divider.style.left = `${percentage}%`;
+        clipLayer.style.clipPath = `polygon(${percentage}% 0, 100% 0, 100% 100%, ${percentage}% 100%)`;
+      };
 
-    divider.addEventListener('mousedown', () => { isDragging = true; });
-    container.addEventListener('mousedown', (e: any) => {
-      isDragging = true;
-      setPosition(e.clientX);
-    });
+      divider.addEventListener('mousedown', () => { isDragging = true; demoTween.kill(); });
+      container.addEventListener('mousedown', (e: any) => {
+        isDragging = true;
+        setPosition(e.clientX);
+      });
 
-    divider.addEventListener('touchstart', () => { isDragging = true; }, { passive: true });
-    container.addEventListener('touchstart', (e: any) => {
-      isDragging = true;
-      setPosition(e.touches[0].clientX);
-    }, { passive: true });
+      divider.addEventListener('touchstart', () => { isDragging = true; demoTween.kill(); }, { passive: true });
+      container.addEventListener('touchstart', (e: any) => {
+        isDragging = true;
+        setPosition(e.touches[0].clientX);
+      }, { passive: true });
 
-    window.addEventListener('mouseup', () => { isDragging = false; });
-    window.addEventListener('touchend', () => { isDragging = false; });
+      window.addEventListener('mouseup', () => { isDragging = false; });
+      window.addEventListener('touchend', () => { isDragging = false; });
 
-    window.addEventListener('mousemove', (e: MouseEvent) => {
-      if (!isDragging) return;
-      setPosition(e.clientX);
-    });
+      window.addEventListener('mousemove', (e: MouseEvent) => {
+        if (!isDragging) return;
+        setPosition(e.clientX);
+      });
 
-    window.addEventListener('touchmove', (e: TouchEvent) => {
-      if (!isDragging) return;
-      setPosition(e.touches[0].clientX);
-    }, { passive: true });
+      window.addEventListener('touchmove', (e: TouchEvent) => {
+        if (!isDragging) return;
+        setPosition(e.touches[0].clientX);
+      }, { passive: true });
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBeforeAfter);
+  } else {
+    initBeforeAfter();
   }
 </script>

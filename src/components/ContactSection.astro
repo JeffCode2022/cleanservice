@@ -102,24 +102,20 @@
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".contact-section",
-      start: "top 70%",
+      start: "top 75%",
+      once: true
     }
   });
 
-  tl.from(".contact-left", {
-    x: -100,
-    opacity: 0,
-    rotateY: 10,
-    duration: 1,
-    ease: "power3.out"
-  })
-  .from(".contact-right", {
-    x: 100,
-    opacity: 0,
-    rotateY: -10,
-    duration: 1,
-    ease: "power3.out"
-  }, "-=0.8");
+  tl.fromTo(".contact-left", 
+    { x: -80, opacity: 0, rotateY: 8 },
+    { x: 0, opacity: 1, rotateY: 0, duration: 1, ease: "power3.out" }
+  )
+  .fromTo(".contact-right", 
+    { x: 80, opacity: 0, rotateY: -8 },
+    { x: 0, opacity: 1, rotateY: 0, duration: 1, ease: "power3.out" },
+    "-=0.7"
+  );
 
   const form = document.getElementById('contact-form');
   form?.addEventListener('submit', (e) => {

@@ -176,158 +176,166 @@
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
 
-  const entranceWrapper = document.getElementById('heroEntranceWrapper');
-  const cluster = document.getElementById('heroCluster');
-  const stage = document.getElementById('heroVisualStage');
+  const initHero = () => {
+    const entranceWrapper = document.getElementById('heroEntranceWrapper');
+    const cluster = document.getElementById('heroCluster');
+    const stage = document.getElementById('heroVisualStage');
 
-  // 1. ANIMACIÓN DE ENTRADA AL CARGAR LA PÁGINA
-  const entryTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    // 1. ANIMACIÓN DE ENTRADA AL CARGAR LA PÁGINA
+    const entryTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-  // Texto izquierdo
-  entryTl.from('.hero-heading', {
-    y: 40,
-    opacity: 0,
-    duration: 1,
-    ease: 'power3.out'
-  })
-  .from('.hero-description', {
-    y: 25,
-    opacity: 0,
-    duration: 0.8
-  }, "-=0.6")
-  .from('.hero-actions', {
-    y: 20,
-    opacity: 0,
-    duration: 0.6
-  }, "-=0.5")
-  .from('.hero-proof', {
-    y: 15,
-    opacity: 0,
-    duration: 0.5
-  }, "-=0.4");
-
-  // SOFÁ Y CLUSTER: Aparece del costado derecho CON REBOTE ELÁSTICO en entranceWrapper
-  if (entranceWrapper) {
-    entryTl.fromTo(entranceWrapper, 
-      {
-        x: 420,
-        opacity: 0,
-        scale: 0.88,
-        rotateY: -15
-      },
-      {
-        x: 0,
-        opacity: 1,
-        scale: 1,
-        rotateY: 0,
-        duration: 1.8,
-        ease: 'elastic.out(1, 0.55)'
-      }, 
-      "-=1.5"
+    // Texto izquierdo
+    entryTl.fromTo('.hero-heading', 
+      { y: 35, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
+    )
+    .fromTo('.hero-description', 
+      { y: 25, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8 }, 
+      "-=0.6"
+    )
+    .fromTo('.hero-actions', 
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6 }, 
+      "-=0.5"
+    )
+    .fromTo('.hero-proof', 
+      { y: 15, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5 }, 
+      "-=0.4"
     );
-  }
 
-  // Badges flotantes pop-in con back.out
-  entryTl.fromTo('.hero-float-badge',
-    { scale: 0, opacity: 0 },
-    {
-      scale: 1,
-      opacity: 1,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'back.out(2)'
-    },
-    "-=1.0"
-  );
+    // SOFÁ Y CLUSTER: Aparece del costado derecho con rebote elástico
+    if (entranceWrapper) {
+      entryTl.fromTo(entranceWrapper, 
+        {
+          x: 350,
+          opacity: 0,
+          scale: 0.9,
+          rotateY: -12
+        },
+        {
+          x: 0,
+          opacity: 1,
+          scale: 1,
+          rotateY: 0,
+          duration: 1.6,
+          ease: 'elastic.out(1, 0.6)'
+        }, 
+        "-=1.4"
+      );
+    }
 
-  // 2. IDLE FLOATING ANIMATION (Micro-flotación continua suave)
-  gsap.to('.hero-sofa-img', {
-    y: -10,
-    duration: 3,
-    yoyo: true,
-    repeat: -1,
-    ease: 'sine.inOut'
-  });
+    // Badges flotantes pop-in
+    entryTl.fromTo('.hero-float-badge',
+      { scale: 0, opacity: 0 },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: 'back.out(2)'
+      },
+      "-=0.9"
+    );
 
-  gsap.to('.hero-tool-float', {
-    y: -16,
-    rotate: -3,
-    duration: 2.8,
-    yoyo: true,
-    repeat: -1,
-    ease: 'sine.inOut',
-    delay: 0.3
-  });
+    // 2. IDLE FLOATING ANIMATION (Inicia tras completarse la entrada)
+    entryTl.add(() => {
+      gsap.to('.hero-sofa-img', {
+        y: -10,
+        duration: 3,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut'
+      });
 
-  gsap.to('.float-badge-1', {
-    y: -8,
-    duration: 3.2,
-    yoyo: true,
-    repeat: -1,
-    ease: 'sine.inOut',
-    delay: 0.5
-  });
+      gsap.to('.hero-tool-float', {
+        y: -16,
+        rotate: -3,
+        duration: 2.8,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        delay: 0.2
+      });
 
-  gsap.to('.float-badge-2', {
-    y: -12,
-    duration: 2.6,
-    yoyo: true,
-    repeat: -1,
-    ease: 'sine.inOut',
-    delay: 0.8
-  });
+      gsap.to('.float-badge-1', {
+        y: -8,
+        duration: 3.2,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        delay: 0.3
+      });
 
-  gsap.to('.float-badge-3', {
-    y: -6,
-    duration: 3.5,
-    yoyo: true,
-    repeat: -1,
-    ease: 'sine.inOut',
-    delay: 0.2
-  });
+      gsap.to('.float-badge-2', {
+        y: -12,
+        duration: 2.6,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        delay: 0.5
+      });
 
-  // 3. EFECTO SCROLL: VUELVE POR DONDE SALIÓ Y REGRESA AL SUBIR
-  // Al hacer scroll hacia abajo sale a la derecha; al volver a subir regresa 100% a su sitio
-  if (cluster) {
-    gsap.to(cluster, {
-      x: 320,
-      opacity: 0,
-      rotateY: -15,
-      scale: 0.9,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top top',
-        end: 'bottom 15%',
-        scrub: 1,
-        invalidateOnRefresh: true
-      }
-    });
-  }
-
-  // 4. PARALLAX 3D REACT BITS: TILT SUTIL SEGÚN MOVIMIENTO DEL MOUSE
-  if (stage && cluster) {
-    stage.addEventListener('mousemove', (e) => {
-      const rect = stage.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-
-      gsap.to(cluster, {
-        rotateY: x * 0.025,
-        rotateX: -y * 0.025,
-        duration: 0.6,
-        ease: 'power1.out',
-        transformPerspective: 1000
+      gsap.to('.float-badge-3', {
+        y: -6,
+        duration: 3.5,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        delay: 0.1
       });
     });
 
-    stage.addEventListener('mouseleave', () => {
+    // 3. EFECTO SCROLL: Al scrollear hacia abajo sale suavemente a la derecha; al volver arriba regresa
+    if (cluster) {
       gsap.to(cluster, {
-        rotateY: 0,
-        rotateX: 0,
-        duration: 0.8,
-        ease: 'power2.out'
+        x: 240,
+        opacity: 0,
+        scale: 0.92,
+        ease: 'power1.in',
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top top',
+          end: 'bottom 20%',
+          scrub: 1,
+          invalidateOnRefresh: true
+        }
       });
-    });
+    }
+
+    // 4. PARALLAX 3D REACT BITS: TILT SUTIL SEGÚN MOVIMIENTO DEL MOUSE
+    if (stage && cluster) {
+      stage.addEventListener('mousemove', (e) => {
+        const rect = stage.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        gsap.to(cluster, {
+          rotateY: x * 0.02,
+          rotateX: -y * 0.02,
+          duration: 0.5,
+          ease: 'power1.out',
+          transformPerspective: 1000,
+          overwrite: 'auto'
+        });
+      });
+
+      stage.addEventListener('mouseleave', () => {
+        gsap.to(cluster, {
+          rotateY: 0,
+          rotateX: 0,
+          duration: 0.7,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        });
+      });
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHero);
+  } else {
+    initHero();
   }
 </script>

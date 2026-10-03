@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 36" width="240" height="36" fill="currentColor">
+  <!-- Official Auna lime-blue emblem -->
+  <g transform="translate(0, 5) scale(0.65)">
+    <path fill="#C2DF0A" d="M42.87 9.76v-9h8.93v4.5a4.48 4.48 0 0 1-4.47 4.5Zm17.93 4.5a4.49 4.49 0 0 0-4.48 4.5v4.49h8.93v-9Z"/>
+    <path fill="#00b0ca" d="M17.82 3.16h-.08C16.93 1.78 14.88 0 11.22 0 5.27 0 0 4.61 0 12c0 6.43 4.14 12 11.22 12 2.62 0 5.39-1 6.52-3.2h.08v2.43h6.67V.77h-6.67Zm-5.6 14.57a5.58 5.58 0 0 1-5.54-5.66c0-2.56 1.68-5.8 5.51-5.8A5.52 5.52 0 0 1 17.82 12a5.54 5.54 0 0 1-5.6 5.73m88.1-17v2.43h-.08C99.44 1.78 97.39 0 93.73 0c-6 0-11.22 4.61-11.22 12 0 6.43 4.14 12 11.22 12 2.61 0 5.39-1 6.51-3.2h.08v2.43H107V.77Zm-5.58 17a5.59 5.59 0 0 1-5.56-5.66 5.57 5.57 0 1 1 11.14-.07 5.53 5.53 0 0 1-5.58 5.73m-42.95.88v4.64h-8.92v-1.88C41.43 23.74 38.94 24 37.35 24c-1.36 0-4.57-.33-6.54-2.83-1.78-2.23-2-3.85-2-6.92V.77h6.67v12.42c0 1.54 0 4.5 3.58 4.5a3.53 3.53 0 0 0 3.74-3.42h4.55a4.41 4.41 0 0 1 4.44 4.34M77.32 2.89c1.77 2.23 2 3.85 2 6.93v13.43h-6.67V10.83c0-1.54 0-4.49-3.58-4.49a3.52 3.52 0 0 0-3.74 3.42h-4.55a4.42 4.42 0 0 1-4.45-4.35V.76h8.92v1.9C66.69.28 69.18.06 70.76.06c1.37 0 4.58.33 6.56 2.83"/>
+  </g>
+  <g transform="translate(80, 0)">
+    <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700" font-size="14" letter-spacing="1.2" fill="#0f172a">CLÍNICA DELGADO</text>
+    <text x="0" y="30" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="600" font-size="8.5" letter-spacing="2" fill="#00b0ca">RED AUNA</text>
+  </g>
+</svg>

@@ -1,4 +1,16 @@
 ---
+const corporateClients = [
+  { name: 'Marriott International', logo: '/images/logos/marriott.svg', height: 'h-6 sm:h-7' },
+  { name: 'Hilton Hotels & Resorts', logo: '/images/logos/hilton.svg', height: 'h-8 sm:h-9' },
+  { name: 'Starbucks Coffee', logo: '/images/logos/starbucks.svg', height: 'h-7 sm:h-8' },
+  { name: 'WeWork', logo: '/images/logos/wework.svg', height: 'h-5 sm:h-6' },
+  { name: 'Casa Andina Hoteles', logo: '/images/logos/casa-andina.png', height: 'h-8 sm:h-9' },
+  { name: 'Cineplanet', logo: '/images/logos/cineplanet.png', height: 'h-8 sm:h-9' },
+  { name: 'Clínica Delgado Auna', logo: '/images/logos/clinica-delgado.svg', height: 'h-7 sm:h-8' },
+  { name: 'BCP', logo: '/images/logos/bcp.svg', height: 'h-6 sm:h-7' },
+  { name: 'Interbank', logo: '/images/logos/interbank.svg', height: 'h-6 sm:h-7' },
+  { name: 'BBVA', logo: '/images/logos/bbva.svg', height: 'h-5 sm:h-6' },
+];
 ---
 
 <section id="testimonios" class="full-bleed edge-pad py-24 bg-white relative overflow-hidden">
@@ -227,100 +239,38 @@
       <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
       <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-      <!-- Marquee track -->
-      <div class="flex items-center gap-12 sm:gap-16 corporate-track whitespace-nowrap">
-        
-        <!-- Marriott -->
-        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
-          <svg class="h-7 w-auto fill-slate-800" viewBox="0 0 200 40">
-            <path d="M25 5 L35 30 L45 10 L55 30 L65 5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <text x="80" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="currentColor">MARRIOTT</text>
-          </svg>
-        </div>
+      <!-- Marquee track with real company logos -->
+      <div class="flex items-center gap-12 sm:gap-16 corporate-track whitespace-nowrap py-3">
+        <!-- First set -->
+        {corporateClients.map((client) => (
+          <div 
+            class="h-12 px-3 flex items-center justify-center grayscale opacity-55 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer flex-shrink-0" 
+            title={client.name}
+          >
+            <img 
+              src={client.logo} 
+              alt={client.name} 
+              class={`${client.height} w-auto max-w-[170px] object-contain select-none transition-transform duration-300`} 
+              loading="lazy" 
+            />
+          </div>
+        ))}
 
-        <!-- WeWork -->
-        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
-          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 160 40">
-            <text x="10" y="28" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="24" letter-spacing="-1" fill="currentColor">wework</text>
-          </svg>
-        </div>
-
-        <!-- Casa Andina -->
-        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
-          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 220 40">
-            <circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
-            <circle cx="20" cy="20" r="5" fill="currentColor"/>
-            <text x="42" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="16" letter-spacing="1" fill="currentColor">CASA ANDINA</text>
-          </svg>
-        </div>
-
-        <!-- Cineplanet -->
-        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
-          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 200 40">
-            <ellipse cx="20" cy="20" rx="14" ry="7" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(-25 20 20)"/>
-            <circle cx="20" cy="20" r="5" fill="currentColor"/>
-            <text x="44" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="17" fill="currentColor">cineplanet</text>
-          </svg>
-        </div>
-
-        <!-- Clínica Delgado -->
-        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
-          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 220 40">
-            <rect x="10" y="10" width="20" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="2.5"/>
-            <path d="M20 14 V26 M14 20 H26" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <text x="38" y="22" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="14" fill="currentColor">CLÍNICA DELGADO</text>
-            <text x="38" y="32" font-family="'Space Grotesk', sans-serif" font-weight="500" font-size="9" fill="currentColor" opacity="0.7">AUNA HEALTHCARE</text>
-          </svg>
-        </div>
-
-        <!-- Hilton -->
-        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
-          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 160 40">
-            <rect x="10" y="8" width="22" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
-            <text x="16" y="26" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="18" fill="currentColor">H</text>
-            <text x="40" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="18" letter-spacing="2" fill="currentColor">HILTON</text>
-          </svg>
-        </div>
-
-        <!-- Starbucks -->
-        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer">
-          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 190 40">
-            <circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="2.5"/>
-            <polygon points="20,12 22,17 27,17 23,20 25,25 20,22 15,25 17,20 13,17 18,17" fill="currentColor"/>
-            <text x="40" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="16" letter-spacing="1" fill="currentColor">STARBUCKS</text>
-          </svg>
-        </div>
-
-        <!-- Duplicate set for infinite loop -->
-        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer" aria-hidden="true">
-          <svg class="h-7 w-auto fill-slate-800" viewBox="0 0 200 40">
-            <path d="M25 5 L35 30 L45 10 L55 30 L65 5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <text x="80" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="currentColor">MARRIOTT</text>
-          </svg>
-        </div>
-
-        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer" aria-hidden="true">
-          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 160 40">
-            <text x="10" y="28" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="24" letter-spacing="-1" fill="currentColor">wework</text>
-          </svg>
-        </div>
-
-        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer" aria-hidden="true">
-          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 220 40">
-            <circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
-            <circle cx="20" cy="20" r="5" fill="currentColor"/>
-            <text x="42" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="16" letter-spacing="1" fill="currentColor">CASA ANDINA</text>
-          </svg>
-        </div>
-
-        <div class="h-10 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer" aria-hidden="true">
-          <svg class="h-8 w-auto fill-slate-800" viewBox="0 0 200 40">
-            <ellipse cx="20" cy="20" rx="14" ry="7" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(-25 20 20)"/>
-            <circle cx="20" cy="20" r="5" fill="currentColor"/>
-            <text x="44" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="17" fill="currentColor">cineplanet</text>
-          </svg>
-        </div>
-
+        <!-- Duplicate set for seamless infinite loop -->
+        {corporateClients.map((client) => (
+          <div 
+            class="h-12 px-3 flex items-center justify-center grayscale opacity-55 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer flex-shrink-0" 
+            aria-hidden="true" 
+            title={client.name}
+          >
+            <img 
+              src={client.logo} 
+              alt={client.name} 
+              class={`${client.height} w-auto max-w-[170px] object-contain select-none transition-transform duration-300`} 
+              loading="lazy" 
+            />
+          </div>
+        ))}
       </div>
     </div>
   </div>
@@ -350,7 +300,7 @@
   .corporate-track {
     display: flex;
     width: max-content;
-    animation: corporateScroll 28s linear infinite;
+    animation: corporateScroll 35s linear infinite;
   }
 
   .corporate-track:hover {
@@ -373,31 +323,36 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  document.addEventListener('DOMContentLoaded', () => {
-    
+  const initTestimonials = () => {
     // Parallax Header
     gsap.to(".parallax-header", {
-      y: 50,
-      opacity: 0.8,
+      y: 40,
+      opacity: 0.9,
       ease: "none",
       scrollTrigger: {
-        trigger: "#testimonials-section",
+        trigger: "#testimonios",
         start: "top bottom",
         end: "bottom top",
         scrub: true
       }
     });
 
-    // Subtle horizontal shift tied to vertical scroll
-    gsap.to(".marquee-track", {
-      x: "-5%", // Just a slight extra shift on scroll
+    // Desplazamiento horizontal sutil de los contenedores de testimonios con el scroll
+    gsap.to(".testimonial-container", {
+      x: -40,
       ease: "none",
       scrollTrigger: {
-        trigger: "#testimonials-section",
+        trigger: "#testimonios",
         start: "top bottom",
         end: "bottom top",
-        scrub: 1
+        scrub: 1.2
       }
     });
-  });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTestimonials);
+  } else {
+    initTestimonials();
+  }
 </script>
